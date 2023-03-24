@@ -1,0 +1,22 @@
+{% extends 'layout.html'%}
+{% block title %}
+History Page
+{% endblock %}
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+                <th>Original URL</th>
+                <th>Shortened URL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for url in urls %}
+                <tr>
+                    <td>{{ url.original_url }}</td>
+                    <td><a href="{{ url.short_url }}">{{ url.short_url }}</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
