@@ -1,20 +1,20 @@
-{% extends 'layout.html'%}
+{% extends 'layout.html' %}
 {% block title %}
-History Page
+    History Page
 {% endblock %}
 {% block content %}
-    <table>
-        <thead>
+    <table style="text-align: center; width: 100%; max-width: 800px; margin: 0 auto;">
+        <thead style="background-color: #ddd;">
             <tr>
-                <th>Original URL</th>
-                <th>Shortened URL</th>
+                <th style="padding: 10px;">Original URL</th>
+                <th style="padding: 10px;">Shortened URL</th>
             </tr>
         </thead>
         <tbody>
             {% for url in urls %}
                 <tr>
-                    <td>{{ url.original_url }}</td>
-                    <td><a href="{{ url.short_url }}">{{ url.short_url }}</a></td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ url.original_url }}</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;"><a href="{{ url.short_url }}" style="text-decoration: none; color: #333;">{{ request.host }}/{{ url.short_url }}</a></td>
                 </tr>
             {% endfor %}
         </tbody>

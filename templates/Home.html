@@ -4,15 +4,19 @@ Home Page
 {% endblock %}
 {% block content %}
 
-<form action="{{ url_for('home_page') }}" method="post">
-    <input type="text" name="user_url" placeholder="Enter the URL">
-    <button type="submit">Shorten</button>
-</form>
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 50px;">
+    <h1 style="font-size: 2em; margin-bottom: 30px;">URL Shortener</h1>
+    <form action="{{ url_for('home_page') }}" method="post" style="display: flex; flex-direction: column; background-color: #F5F5F5; padding: 20px; border-radius: 10px;">
+        <input type="text" name="user_url" placeholder="Enter the URL" style="margin-bottom: 10px; padding: 10px; border-radius: 5px; font-size: 1em;">
+        <button type="submit" style="padding: 10px 20px; border-radius: 5px; background-color: #4CAF50; color: white; font-size: 1em;">Shorten</button>
+    </form>
+</div>
+
 {% if short_url %}
-    <div>
-        <p>Your shortened URL is:</p>
-        <a href="{{ short_url }}">{{ short_url }}</a>
-        <button onclick="copyToClipboard('{{ short_url }}')">Copy to clipboard</button>
+    <div style="margin-top: 50px; text-align: center;">
+        <p style="font-size: 1.2em;">Your shortened URL is:</p>
+        <a href="{{ short_url }}" style="font-size: 1.2em;">{{ short_url }}</a>
+        <button onclick="copyToClipboard('{{ short_url }}')" style="padding: 10px 20px; border-radius: 5px; background-color: #4CAF50; color: white; font-size: 1em; margin-left: 10px;">Copy to clipboard</button>
     </div>
 {% endif %}
 

@@ -34,7 +34,7 @@ class Url(db.Model):
 def generate_short_url():
     characters = string.ascii_letters + string.digits
     while True:
-        short_url = "".join(random.choice(characters) for i in range(6))
+        short_url = "".join(random.choice(characters) for i in range(3))
         if not Url.query.filter_by(short_url=short_url).first():
             return short_url
 
@@ -56,6 +56,16 @@ def shorten_url():
         db.session.add(url)
         db.session.commit()
     return render_template("Home.html", short_url=url.short_url)
+
+
+@app.route('/<short_url>')
+def redirect_to_original_url(short_url):
+    url = Url.query.filter_by(short_url=short_url).first()
+
+    if url:
+        return redirect(url.original_url)
+    
+    return os.abort(404)
 
 
 @app.route("/history")

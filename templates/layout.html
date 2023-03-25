@@ -8,11 +8,58 @@
         {% block title %}
         {% endblock %}
     </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        nav a:hover {
+            background-color: #fff;
+            color: #333;
+        }
+        .messages {
+            list-style: none;
+            padding: 10px;
+            margin: 0;
+        }
+        .messages li {
+            padding: 5px;
+            margin-bottom: 5px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+        }
+        .page-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin: 20px;
+        }
+        .page-content {
+            width: 48%;
+        }
+    </style>
 </head>
 <body>
-    <nav>
-        <a href="{{ url_for('home_page') }}">Home</a>
-        <a href="{{ url_for('history_page') }}">History</a>
+    <nav style="font-weight: bold;">
+        <div>
+            <a href="{{ url_for('home_page') }}">Home</a>
+            <a href="{{ url_for('history_page') }}">History</a>
+        </div>
     </nav>
     {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -23,7 +70,15 @@
             </ul>
         {% endif %}
     {% endwith %}
-    {% block content %}
-    {% endblock %}
+    <div class="page-wrapper">
+        <div class="page-content">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <div class="page-content">
+            {% block sidebar %}
+            {% endblock %}
+        </div>
+    </div>
 </body>
 </html>
